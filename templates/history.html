@@ -1,0 +1,45 @@
+{% extends 'customer.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block body %}
+        <ul class="list-unstyled container p-3 bg-white ">
+    
+            {% for product in history %}
+                
+            
+            <div class="media d-flex my-5" id="{{product.order_id}}">
+              <img src={{product.images.decode("utf-8")}} class="mr-3" alt="...">
+              <div class="media-body d-flex mx-auto">
+                  <div>
+                    <h5 class="mt-0 mb-1">{{product.p_name}}</h5>
+                    <p>{{product._desc}}</p>
+                  </div>
+                  <div class="mx-5" >
+                      <h5 class="">Order id : <u>{{product.order_id}}</u></h5>
+                      <h5 class="">Order date : {{product.order_date}}</h5>
+                      <h5 class="">Order status : {{product._status}}</h5>
+                      <h5 class="">Product quantity : {{product.quantity}}</h5>
+                      <h5 class="">Products price : ₹{{product.price}}</h5>
+                      <h5 class="">Seller's id : {{product.s_id}}</h5>
+                </div>
+              </div>
+            </div>
+            
+            
+           
+
+              {% endfor %}
+              
+    {% endblock body %}
+    
+</body>
+</html>

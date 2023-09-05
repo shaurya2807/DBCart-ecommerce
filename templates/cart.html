@@ -1,0 +1,46 @@
+{% extends 'customer.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% block body %}
+    <div class="container d-flex">
+    <ul class="list-unstyled container p-3 bg-white ">
+
+        {% for prod in prodList %}
+          
+        
+        <li class="media d-flex my-5">
+          <img src={{prod[0].images.decode("utf-8")}} class="mr-3" alt="...">
+          <div class="media-body mx-3 my-2">
+            <h5 class="mt-0 mb-1">{{prod[0].p_name}}</h5>
+            {{prod[0]._desc}}
+            <br>
+            Quantity: {{prod[0].quantity}}
+            <br>
+            <form method = "post">
+            <button type="submit" value = {{prod[0].p_id}} class="btn btn-dark" name="del">Delete</button> </form>
+          </div>
+        </li>
+        {% endfor %}
+
+
+        
+      </ul>
+      <span class="m-5 p-5 h-50 d-inline-block bg-dark text-white text-justify">
+          <p>Subtotal({{total_items}} items) ₹{{total_price}}</p>
+          <form method = "POST">
+          <button class="btn btn-outline-light" type="submit" name = "del" value = "Checkout">Checkout</button></form>
+    </span>
+      
+    </div>
+    {% endblock body %}
+    
+</body>
+</html>

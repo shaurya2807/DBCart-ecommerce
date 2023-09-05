@@ -1,0 +1,94 @@
+{% extends 'customer.html' %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    {% block body %}
+    <ul class="list-unstyled container p-3 bg-white ">
+      <div class="d-flex  my-3  p-2 bg-black   " style="width: 500px;">
+        <br>
+      <form method="post">
+                        
+        <button type="submit" value = "filter" class="btn btn-outline-light" name="action1">filter</button>
+        <select class="btn btn-light dropdown-toggle" name="filter" id="filter" onChange="update1()">
+          <option disabled hidden selected>Select from the dropdown</option>
+          <option value="1">Price [High to low]</option>
+          <option value="2">Price [Low to high]</option>
+          <option value="3">In Stock</option>
+          <option value="4">Name</option>
+        </select>
+        
+    
+        <script type="text/javascript">
+          function update1() {
+            var select = document.getElementById('language');
+            var option = select.options[select.selectedIndex];
+    
+            document.getElementById('value').value = option.value;
+            document.getElementById('text').value = option.text;
+          }
+    
+          update1();
+        </script>  
+  </form>
+  </div>
+            {% for product in products %}
+                
+            
+            <li class="media d-flex my-5">
+              <img src={{product.images.decode("utf-8")}} class="mr-3" alt="...">
+              <div class="media-body mx-3 my-2">
+                <h5 class="mt-0 mb-1">{{product.p_name}}</h5>
+                {{product._desc}}
+                <br>
+                Price: ₹{{product.price}}
+                <br><br> <div class="btn-group">
+                    <form method="post">
+                      
+                            <button type="submit" value = {{product.p_id}} class="btn btn-dark" name="action1">Add to Cart</button>
+                            <select class="btn btn-dark dropdown-toggle" name="quantity" id="quantity" onChange="update()">
+                              <option disabled hidden selected>Quantity</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                            </select>
+                            
+                        
+                            <script type="text/javascript">
+                              function update() {
+                                var select = document.getElementById('language');
+                                var option = select.options[select.selectedIndex];
+                        
+                                document.getElementById('value').value = option.value;
+                                document.getElementById('text').value = option.text;
+                              }
+                        
+                              update();
+                            </script>  
+                    </form>
+
+                    
+                    
+                  </div>
+              </div>
+            
+
+              {% endfor %}
+
+    {% endblock body %}
+    
+
+ 
+
+</body>
+</html>

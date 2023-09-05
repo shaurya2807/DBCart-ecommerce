@@ -1,0 +1,15 @@
+{% extends 'homepage.html' %}
+
+{% block body %}
+
+Query:<br> <form method="post"> <input type="text" name="query" id="query" class="form-control" id="query"><br>
+    <button type="submit" name = "querySubmit" value="idk" class="btn btn-primary">Submit</button>
+</form>
+<br>
+
+{% for res in result %}
+    {{res}}<br>
+{% endfor %}
+
+
+{% endblock body %}
